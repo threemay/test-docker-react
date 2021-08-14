@@ -6,9 +6,11 @@ node_js:
 services: 
     - docker
 before_install: 
-    - docker build -t threemay/sample-app -f Dockerfile.dev .
+    ## - docker build -t threemay/sample-app -f Dockerfile.dev .
+    - docker build -t sample-app .
 script:     
-    - docker run -e CI=true threemay/sample-app npm run test -- --coverage --watchAll=false
+    ## - docker run -e CI=true threemay/sample-app npm run test -- --coverage --watchAll=false
+    - docker run -p 80:80 sample-app
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1" ### AWS region of your choice
