@@ -9,6 +9,8 @@ before_install:
     - docker build -t threemay/sample-app -f Dockerfile.dev .
 script:     
     - docker run -e CI=true threemay/sample-app npm run test -- --coverage --watchAll=false
+
+    
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1" ### AWS region of your choice
