@@ -9,3 +9,14 @@ before_install:
     - docker build -t threemay/sample-app -f Dockerfile.dev .
 script:     
     - docker run -e CI=true threemay/sample-app npm run test -- --coverage --watchAll=false
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-2" ### AWS region of your choice
+  app: "test-docker-react" ### Your EB App name
+  env: "Testdockerreact-env" ### Your EB App environment name
+  bucket_name: "elasticbeanstalk-ap-southeast-2-092354816535" ### S3 bucket name
+  bucket_path: "EBApptest" ### S3 folder name under S3 bucket above
+  on:
+    branch: main
+  access_key_id: "AKIARLAGGVILZLDUTI6L"
+  secret_access_key: "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"
